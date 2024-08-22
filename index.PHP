@@ -17,27 +17,30 @@
         }
         h1 {
             color: #333;
-            margin-bottom: 20px;
         }
         .control-panel {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             display: grid;
             grid-template-areas: 
-                ". up ."
+                " .  up    .  "
                 "left center right"
-                ". down .";
-            gap: 10px;
-            justify-items: center;
-            align-items: center;
+                " .  stop  .  "
+                " .  down  .  ";
+            grid-gap: 10px;
+            max-width: 300px;
+            width: 100%;
         }
         .direction-button {
-            width: 100px;
-            height: 100px;
+            padding: 20px;
             font-size: 20px;
             cursor: pointer;
-            border: 1px solid #ccc;
-            background-color: #eee;
+            border: none;
             border-radius: 5px;
             transition: background-color 0.3s, transform 0.2s;
+            color: white;
         }
         .direction-button:hover {
             background-color: #ddd;
@@ -48,31 +51,40 @@
         }
         .up {
             grid-area: up;
+            background-color: #FF69B4; /* Hot Pink */
         }
         .down {
             grid-area: down;
+            background-color: #FF1493; /* Deep Pink */
         }
         .left {
             grid-area: left;
+            background-color: #FFB6C1; /* Light Pink */
         }
         .right {
             grid-area: right;
+            background-color: #DB7093; /* Pale Violet Red */
+        }
+        .stop {
+            grid-area: stop;
+            background-color: #FF00FF; /* Magenta */
         }
         .center {
             grid-area: center;
-            background-color: red;
-            color: white;
+            background-color: #FFC0CB; /* Pink */
         }
     </style>
 </head>
 <body>
-    <h1>Control Robot Direction</h1>
+    <h1>Control Panel</h1>
     <div class="control-panel">
-        <button class="direction-button up" type="button">Forward</button>
-        <button class="direction-button left" type="button">Left</button>
-        <button class="direction-button center" type="button">Stop</button>
-        <button class="direction-button right" type="button">Right</button>
-        <button class="direction-button down" type="button">Backward</button>
+        <form method="post" action="process.php"> <!-- تأكد من أن المسار صحيح -->
+            <button class="direction-button up" type="submit" name="direction" value="forward">Forward</button>
+            <button class="direction-button down" type="submit" name="direction" value="backward">Backward</button>
+            <button class="direction-button left" type="submit" name="direction" value="left">Left</button>
+            <button class="direction-button right" type="submit" name="direction" value="right">Right</button>
+            <button class="direction-button stop" type="submit" name="direction" value="stop">Stop</button>
+        </form>
     </div>
 </body>
 </html>
